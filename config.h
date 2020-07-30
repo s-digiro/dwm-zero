@@ -16,10 +16,14 @@ static char normfgcolor[]           = "#ffffff";
 static char selfgcolor[]            = "#ffffff";
 static char selbordercolor[]        = "#ffffff";
 static char selbgcolor[]            = "#000000";
+static char titlefgcolor[]          = "#202020";
+static char titlebgcolor[]          = "#000000";
+static char titlebordercolor[]          = "#202020";
 static const char *colors[][3]      = {
 	/*               fg           bg           border   */
 	[SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
 	[SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor },
+	[SchemeTitle] = {titlefgcolor, titlebgcolor, titlebordercolor },
 };
 
 /* tagging */
@@ -32,8 +36,6 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   isterminal noswallow monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           0,         0,        -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           0,         -1,       0 },
 	{ "St",       NULL,       NULL,       0,            0,           1,         0,        -1 },
 };
 
@@ -59,6 +61,9 @@ ResourcePref resources[] = {
 		{ "selbgcolor",         STRING,  &selbgcolor },
 		{ "selbordercolor",     STRING,  &selbordercolor },
 		{ "selfgcolor",         STRING,  &selfgcolor },
+		{ "titlefgcolor",	STRING,  &titlefgcolor },
+		{ "titlebgcolor",	STRING,  &titlebgcolor },
+		{ "titlebordercolor",	STRING,  &titlebordercolor },
 		{ "borderpx",          	INTEGER, &borderpx },
 		{ "snap",      		INTEGER, &snap },
 		{ "showbar",          	INTEGER, &showbar },
@@ -83,12 +88,14 @@ ResourcePref resources[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *browsercmd[] = {"tabbed", "surf", "-e", NULL };
 
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_f,      spawn,          {.v = browsercmd } },
 	//{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -108,31 +115,31 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_Down,   movestack,      {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_Up,     movestack,      {.i = -1 } },
-	//{ MODKEY,                       XK_Return, zoom,           {0} },
+	{ MODKEY,                       XK_Return, zoom,           {0} },
 	//{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY|ShiftMask,             XK_m,      setlayout,      {.v = &layouts[2]} },
 	//{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_space,  togglefullscr,  {0} },
-	//{ MODKEY,                       XK_Down,   moveresize,     {.v = "0x 25y 0w 0h" } },
-	//{ MODKEY,                       XK_Up,     moveresize,     {.v = "0x -25y 0w 0h" } },
-	//{ MODKEY,                       XK_Right,  moveresize,     {.v = "25x 0y 0w 0h" } },
-	//{ MODKEY,                       XK_Left,   moveresize,     {.v = "-25x 0y 0w 0h" } },
-	//{ MODKEY|ShiftMask,             XK_Down,   moveresize,     {.v = "0x 0y 0w 25h" } },
-	//{ MODKEY|ShiftMask,             XK_Up,     moveresize,     {.v = "0x 0y 0w -25h" } },
-	//{ MODKEY|ShiftMask,             XK_Right,  moveresize,     {.v = "0x 0y 25w 0h" } },
-	//{ MODKEY|ShiftMask,             XK_Left,   moveresize,     {.v = "0x 0y -25w 0h" } },
-	//{ MODKEY|ControlMask,           XK_Up,     moveresizeedge, {.v = "t"} },
-	//{ MODKEY|ControlMask,           XK_Down,   moveresizeedge, {.v = "b"} },
-	//{ MODKEY|ControlMask,           XK_Left,   moveresizeedge, {.v = "l"} },
-	//{ MODKEY|ControlMask,           XK_Right,  moveresizeedge, {.v = "r"} },
-	//{ MODKEY|ControlMask|ShiftMask, XK_Up,     moveresizeedge, {.v = "T"} },
-	//{ MODKEY|ControlMask|ShiftMask, XK_Down,   moveresizeedge, {.v = "B"} },
-	//{ MODKEY|ControlMask|ShiftMask, XK_Left,   moveresizeedge, {.v = "L"} },
-	//{ MODKEY|ControlMask|ShiftMask, XK_Right,  moveresizeedge, {.v = "R"} },
+	{ MODKEY|Mod1Mask,                       XK_Down,   moveresize,     {.v = "0x 25y 0w 0h" } },
+	{ MODKEY|Mod1Mask,                       XK_Up,     moveresize,     {.v = "0x -25y 0w 0h" } },
+	{ MODKEY|Mod1Mask,                       XK_Right,  moveresize,     {.v = "25x 0y 0w 0h" } },
+	{ MODKEY|Mod1Mask,                       XK_Left,   moveresize,     {.v = "-25x 0y 0w 0h" } },
+	{ MODKEY|Mod1Mask|ShiftMask,             XK_Down,   moveresize,     {.v = "0x 0y 0w 25h" } },
+	{ MODKEY|Mod1Mask|ShiftMask,             XK_Up,     moveresize,     {.v = "0x 0y 0w -25h" } },
+	{ MODKEY|Mod1Mask|ShiftMask,             XK_Right,  moveresize,     {.v = "0x 0y 25w 0h" } },
+	{ MODKEY|Mod1Mask|ShiftMask,             XK_Left,   moveresize,     {.v = "0x 0y -25w 0h" } },
+	{ MODKEY|ControlMask,           XK_Up,     moveresizeedge, {.v = "t"} },
+	{ MODKEY|ControlMask,           XK_Down,   moveresizeedge, {.v = "b"} },
+	{ MODKEY|ControlMask,           XK_Left,   moveresizeedge, {.v = "l"} },
+	{ MODKEY|ControlMask,           XK_Right,  moveresizeedge, {.v = "r"} },
+	{ MODKEY|ControlMask|ShiftMask, XK_Up,     moveresizeedge, {.v = "T"} },
+	{ MODKEY|ControlMask|ShiftMask, XK_Down,   moveresizeedge, {.v = "B"} },
+	{ MODKEY|ControlMask|ShiftMask, XK_Left,   moveresizeedge, {.v = "L"} },
+	{ MODKEY|ControlMask|ShiftMask, XK_Right,  moveresizeedge, {.v = "R"} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	//{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },

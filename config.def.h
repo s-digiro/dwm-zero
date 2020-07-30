@@ -16,10 +16,14 @@ static char normfgcolor[]           = "#bbbbbb";
 static char selfgcolor[]            = "#eeeeee";
 static char selbordercolor[]        = "#005577";
 static char selbgcolor[]            = "#005577";
+static char titlefgcolor[]          = "#202020";
+static char titlebgcolor[]          = "#000000";
+static char titlebordercolor[]      = "#202020";
 static const char *colors[][3]      = {
 	/*               fg           bg           border   */
 	[SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
 	[SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor },
+	[SchemeTitle] = { titlefgcolor, titlebgcolor, titlebordercolor },
 };
 
 /* tagging */
