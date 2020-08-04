@@ -1,15 +1,15 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 15;        /* gaps between windows */
-static const unsigned int snap      = 32;       /* snap pixel */
-static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const int user_bh            = 22;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
-static const char *fonts[]          = { "terminus:size=12" };
-static const char dmenufont[]       = "terminus:size=12";
+static unsigned int borderpx  = 1;        /* border pixel of windows */
+static unsigned long gappx    = 0;        /* gaps between windows */
+static unsigned int snap      = 32;       /* snap pixel */
+static int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
+static int showbar            = 1;        /* 0 means no bar */
+static int topbar             = 1;        /* 0 means bottom bar */
+static int user_bh            = 0;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+static char *fonts[]          = { "terminus:size=12" };
+static char dmenufont[]       = "terminus:size=12";
 static char normbgcolor[]           = "#000000";
 static char normbordercolor[]       = "#000000";
 static char normfgcolor[]           = "#ffffff";
@@ -40,9 +40,9 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
-static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static int nmaster     = 1;    /* number of clients in master area */
+static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -66,11 +66,14 @@ ResourcePref resources[] = {
 		{ "titlebordercolor",	STRING,  &titlebordercolor },
 		{ "borderpx",          	INTEGER, &borderpx },
 		{ "snap",      		INTEGER, &snap },
+		{ "swallowfloating",    INTEGER, &swallowfloating },
 		{ "showbar",          	INTEGER, &showbar },
 		{ "topbar",          	INTEGER, &topbar },
+		{ "user_bh",            INTEGER, &user_bh },
+		{ "mfact",    	 	FLOAT,   &mfact },
 		{ "nmaster",          	INTEGER, &nmaster },
 		{ "resizehints",       	INTEGER, &resizehints },
-		{ "mfact",    	 	FLOAT,   &mfact },
+		{ "gappx",              INTEGER, &gappx },
 };
 
 /* key definitions */
