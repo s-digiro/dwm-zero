@@ -1687,7 +1687,7 @@ nametag(const Arg *arg)
 	int i;
 
 	errno = 0; // popen(3p) says on failure it may set errno
-	if (!(f = popen("dmenu < /dev/null", "r"))) {
+	if (!(f = popen("dmenu < /dev/null -p \"New tag name:\"", "r"))) {
 		fprintf(stderr, "dwm: popen 'dmenu < /dev/null' failed%s%s\n", errno ? ": " : "", errno ? strerror(errno) : "");
 		return;
 	}
@@ -1699,10 +1699,21 @@ nametag(const Arg *arg)
 		return;
 	if ((p = strchr(name, '\n')))
 		*p = '\0';
+	if (p == name)
+		return;
 
-	for (i = 0; i < LENGTH(tags); ++i)
-		if (selmon->tagset[selmon->seltags] & (1 << i))
-			strcpy(tags[i], name);
+	for (i = 0; i < LENGTH(tags); ++i) {
+		if (selmon->tagset[selmon->seltags] & (1 << i)) {
+			if (name[0] == (char)(i + 1 + '0') && name[1] == '\0') {
+				tags[i][0] = (char)(i + 1 + '0');
+				tags[i][1] = '\0';
+			} else {
+				char tagnamef[64];
+				snprintf(tagnamef, sizeof(tagnamef), "%d:%s", i + 1, name);
+				strcpy(tags[i], tagnamef);
+			}
+		}
+	}
 	drawbars();
 }
 
