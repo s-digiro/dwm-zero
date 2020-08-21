@@ -92,8 +92,8 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
 //static const char *browsercmd[] = {"tabbed", "surf", "-e", NULL };
-static const char *browsercmd[] = {"firefox", NULL};
-static const char *browsercmd2[] = {"tabbed", "surf", "-e", NULL};
+static const char *firefoxcmd[] = {"firefox", NULL};
+static const char *surfcmd[] = {"tabbed", "surf", "-e", NULL};
 static const char *foobar2000cmd[] = {"foobar2000", "start", NULL };
 
 #include "movestack.c"
@@ -101,8 +101,8 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd} },
 	{ MODKEY,                       XK_s,      spawn,          {.v = termcmd} },
-	{ MODKEY,                       XK_f,      spawn,          {.v = browsercmd} },
-	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = browsercmd2} },
+	{ MODKEY,                       XK_f,      spawn,          {.v = surfcmd} },
+	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = firefoxcmd} },
 	{ MODKEY,                       XK_a,      spawn,          {.v = foobar2000cmd} },
 	//{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
