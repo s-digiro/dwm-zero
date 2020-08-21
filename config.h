@@ -93,7 +93,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 //static const char *browsercmd[] = {"tabbed", "surf", "-e", NULL };
 static const char *browsercmd[] = {"firefox", NULL};
-static const char *browsercmd2[] = {"tabbed", "-e", "surf", NULL};
+static const char *browsercmd2[] = {"tabbed", "surf", "-e", NULL};
 static const char *foobar2000cmd[] = {"foobar2000", "start", NULL };
 
 #include "movestack.c"
