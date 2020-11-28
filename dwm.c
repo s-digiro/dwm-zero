@@ -1702,6 +1702,30 @@ nametag(const Arg *arg)
 	if (p == name)
 		return;
 
+	// Magic words which will translate into an icon
+
+	if (strcmp(name, "BROWSER") == 0) {
+		strcpy(name, "🌒");
+	} else if (strcmp(name, "MUSIC") == 0) {
+		strcpy(name, "♩");
+	} else if (strcmp(name, "TV") == 0) {
+		strcpy(name, "▣");
+	} else if (strcmp(name, "DOC") == 0) {
+		strcpy(name, "✎");
+	} else if (strcmp(name, "UPDATE") == 0) {
+		strcpy(name, "↑");
+	} else if (strcmp(name, "TERMINAL") == 0) {
+		strcpy(name, ">");
+	} else if (strcmp(name, "CODE") == 0) {
+		strcpy(name, "λ");
+	} else if (strcmp(name, "MESSAGE") == 0) {
+		strcpy(name, "✉");
+	} else if (strcmp(name, "TOR") == 0) {
+		strcpy(name, "◎");
+	} else if (strcmp(name, "4CHAN") == 0) {
+		strcpy(name, "♣");
+	}
+
 	for (i = 0; i < LENGTH(tags); ++i) {
 		if (selmon->tagset[selmon->seltags] & (1 << i)) {
 			if (name[0] == (char)(i + 1 + '0') && name[1] == '\0') {
