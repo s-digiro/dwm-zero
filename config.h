@@ -11,7 +11,7 @@ static int user_bh            = 0;        /* 0 means that dwm will calculate bar
 static char *fonts[]          = { "terminus:size=12" };
 static char dmenufont[]       = "terminus:size=12";
 static char normbgcolor[]           = "#000000";
-static char normbordercolor[]       = "#000000";
+static char normbordercolor[]       = "#202020";
 static char normfgcolor[]           = "#ffffff";
 static char selfgcolor[]            = "#ffffff";
 static char selbordercolor[]        = "#ffffff";
