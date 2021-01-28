@@ -1400,8 +1400,8 @@ manage(Window w, XWindowAttributes *wa)
 	c->mon->sel = c;
 	arrange(c->mon);
 	XMapWindow(dpy, c->win);
-	if (term)
-		swallow(term, c);
+//	if (term)
+//		swallow(term, c);
 	focus(NULL);
 }
 
