@@ -1687,7 +1687,7 @@ nametag(const Arg *arg)
 	int i;
 
 	errno = 0; // popen(3p) says on failure it may set errno
-	if (!(f = popen("dmenu < /dev/null -p \"New tag name:\"", "r"))) {
+	if (!(f = popen("echo '🌒\n♩\n▣\n✎\n↑\n>\nλ\n✉\n◎\n♣' | dmenu -p \"New tag name:\"", "r"))) {
 		fprintf(stderr, "dwm: popen 'dmenu < /dev/null' failed%s%s\n", errno ? ": " : "", errno ? strerror(errno) : "");
 		return;
 	}
@@ -1701,30 +1701,6 @@ nametag(const Arg *arg)
 		*p = '\0';
 	if (p == name)
 		return;
-
-	// Magic words which will translate into an icon
-
-	if (strcmp(name, "BROWSER") == 0) {
-		strcpy(name, "🌒");
-	} else if (strcmp(name, "MUSIC") == 0) {
-		strcpy(name, "♩");
-	} else if (strcmp(name, "TV") == 0) {
-		strcpy(name, "▣");
-	} else if (strcmp(name, "DOC") == 0) {
-		strcpy(name, "✎");
-	} else if (strcmp(name, "UPDATE") == 0) {
-		strcpy(name, "↑");
-	} else if (strcmp(name, "TERMINAL") == 0) {
-		strcpy(name, ">");
-	} else if (strcmp(name, "CODE") == 0) {
-		strcpy(name, "λ");
-	} else if (strcmp(name, "MESSAGE") == 0) {
-		strcpy(name, "✉");
-	} else if (strcmp(name, "TOR") == 0) {
-		strcpy(name, "◎");
-	} else if (strcmp(name, "4CHAN") == 0) {
-		strcpy(name, "♣");
-	}
 
 	for (i = 0; i < LENGTH(tags); ++i) {
 		if (selmon->tagset[selmon->seltags] & (1 << i)) {
