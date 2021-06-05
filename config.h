@@ -96,6 +96,7 @@ static const char *firefoxcmd[] = {"firefox", NULL};
 //static const char *surfcmd[] = {"tabbed", "surf", "-e", NULL};
 static const char *vimbcmd[] = {"tabbed", "vimb", "-e", NULL};
 static const char *foobar2000cmd[] = {"foobar2000", "start", NULL };
+static const char *torbrowsercmd[] = {"torbrowser-launcher", NULL };
 
 #include "movestack.c"
 static Key keys[] = {
@@ -104,7 +105,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_s,      spawn,          {.v = termcmd} },
 	{ MODKEY,                       XK_f,      spawn,          {.v = firefoxcmd} },
 	{ MODKEY,                       XK_a,      spawn,          {.v = foobar2000cmd} },
-	//{ MODKEY,                       XK_b,      togglebar,      {0} },
+	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = torbrowsercmd} },
+	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_Down,   focusstack,     {.i = +1 } },
