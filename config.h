@@ -16,8 +16,8 @@ enum showtab_modes { showtab_never, showtab_auto, showtab_nmodes, showtab_always
 static const int showtab            = showtab_auto; /* Default tab bar show mode */
 static const Bool toptab            = False;    /* False means bottom tab bar */
 
-static char *fonts[]          = { "terminus:size=8" };
-static char dmenufont[]       = "terminus:size=8";
+static char *fonts[]          = { "terminus:size=12" };
+static char dmenufont[]       = "terminus:size=12";
 static char normbgcolor[]           = "#000000";
 static char normbordercolor[]       = "#202020";
 static char normfgcolor[]           = "#ffffff";
