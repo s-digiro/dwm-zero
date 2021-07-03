@@ -1,0 +1,10 @@
+#!/bin/sh
+WEBSITE=$(:|dmenu -p Firefox);
+
+if [ "$WEBSITE" == "twitch" ]; then
+	WEBSITE="https://www.twitch.tv";
+elif [ "$WEBSITE" == "youtube" ]; then
+	WEBSITE="https://www.youtube.com";
+fi
+
+firefox --new-window $WEBSITE;

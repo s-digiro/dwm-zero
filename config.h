@@ -106,6 +106,7 @@ ResourcePref resources[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
+static const char *ffqlcmd[] = { "firefox-quick_open", NULL };
 static const char *termcmd[]  = { "st", NULL };
 //static const char *browsercmd[] = {"tabbed", "surf", "-e", NULL };
 static const char *firefoxcmd[] = {"firefox", NULL};
@@ -119,6 +120,7 @@ static const char *layoutmenu_cmd = "layoutmenu.sh";
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd} },
+	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = ffqlcmd} },
 	{ MODKEY,                       XK_s,      spawn,          {.v = termcmd} },
 	{ MODKEY,                       XK_f,      spawn,          {.v = firefoxcmd} },
 	{ MODKEY,                       XK_a,      spawn,          {.v = foobar2000cmd} },
