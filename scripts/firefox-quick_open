@@ -1,10 +1,11 @@
-#!/bin/sh
-WEBSITE=$(echo 'twitch\nyoutube' | dmenu -p Firefox)
+#!/bin/bash
+WEBSITE=$(echo -e "twitch\nyoutube" | dmenu -p Firefox)
+echo $WEBSITE
 
-if [ "$WEBSITE" == "twitch" ]; then
-	WEBSITE="https://www.twitch.tv";
-elif [ "$WEBSITE" == "youtube" ]; then
-	WEBSITE="https://www.youtube.com";
+if [ "$WEBSITE" == "youtube" ]; then
+	WEBSITE="https://www.youtube.com"
+elif [ "$WEBSITE" == "twitch" ]; then
+	WEBSITE="https://www.twitch.tv"
 fi
 
 if [ "$WEBSITE" != "" ]; then
