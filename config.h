@@ -50,6 +50,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   isterminal noswallow monitor */
 	{ "St",       NULL,       NULL,       0,            0,           1,         1,        -1 },
+	{ "StFloat",  NULL,       NULL,       0,            1,           1,         1,        -1 }
 };
 
 /* layout(s) */
