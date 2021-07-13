@@ -1342,7 +1342,7 @@ focusstack(const Arg *arg)
 			for (c = selmon->sel->next; c && !ISVISIBLE(c); c = c->next);
 			if (!c)
 				for (c = selmon->clients; c && !ISVISIBLE(c); c = c->next);
-		} else {
+		} else  if (arg->i < 0) {
 			for (i = selmon->clients; i != selmon->sel; i = i->next)
 				if (ISVISIBLE(i))
 					c = i;
@@ -1350,6 +1350,17 @@ focusstack(const Arg *arg)
 				for (; i; i = i->next)
 					if (ISVISIBLE(i))
 						c = i;
+		} else {
+			if (selmon->clients == selmon->sel) {
+				i = selmon->clients;
+				i = i->next;
+				if (ISVISIBLE(i))
+					c = i;
+				if (!c)
+					for (; i; i = i->next)
+						if (ISVISIBLE(i))
+							c = i;
+			}
 		}
 		if (c) {
 			focus(c);
