@@ -119,6 +119,8 @@ static const char *torbrowsercmd[] = {"torbrowser-launcher", NULL };
 static const char *layoutmenu_cmd = "layoutmenu.sh";
 
 #include "movestack.c"
+#include "selfrestart.c"
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd} },
@@ -190,6 +192,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	TAGKEYS(			XK_0,                      9)
+	{ MODKEY|ShiftMask,             XK_r,           self_restart,   {0} },
 	{ MODKEY|ShiftMask,             XK_Escape,      quit,           {0} },
 };
 
