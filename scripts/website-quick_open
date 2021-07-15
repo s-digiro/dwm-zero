@@ -1,16 +1,20 @@
 #!/bin/bash
-WEBSITE=$(echo -e "reddit\ntwitch\nyoutube" | dmenu -p Firefox)
+
+WEBSITE=$(echo -e "reddit\ntwitch\nyoutube" | dmenu -p 'Website')
+
+BROWSER='firefox';
+
 echo $WEBSITE
 
 if [ "$WEBSITE" == "youtube" ]; then
 	WEBSITE="https://www.youtube.com"
 elif [ "$WEBSITE" == "twitch" ]; then
+	BROWSER="chromium";
 	WEBSITE="https://www.twitch.tv"
 elif [ "$WEBSITE" == "reddit" ]; then
 	WEBSITE="https://www.reddit.com"
 fi
 
 if [ "$WEBSITE" != "" ]; then
-	echo $WEBSITE;
-	firefox --new-window $WEBSITE;
+	$BROWSER --new-window $WEBSITE;
 fi
