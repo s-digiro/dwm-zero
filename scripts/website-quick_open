@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WEBSITE=$(echo -e "reddit\ntwitch\nyoutube" | dmenu -p 'Website')
+WEBSITE=$(echo -e "youtube\ntwitch\nreddit\n/g/" | dmenu -p 'Website')
 
 BROWSER='firefox';
 
@@ -13,6 +13,8 @@ elif [ "$WEBSITE" == "twitch" ]; then
 	WEBSITE="https://www.twitch.tv"
 elif [ "$WEBSITE" == "reddit" ]; then
 	WEBSITE="https://www.reddit.com"
+elif [ "$WEBSITE" == "/g/" ]; then
+	WEBSITE="https://www.4chan.org/g/catalog";
 fi
 
 if [ "$WEBSITE" != "" ]; then
