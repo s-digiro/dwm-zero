@@ -240,6 +240,7 @@ static void resizemfactmouse(const Arg *arg);
 static void restack(Monitor *m);
 static void run(void);
 static void scan(void);
+static void sendcmd(const Arg *arg);
 static int sendevent(Client *c, Atom proto);
 static void sendmon(Client *c, Monitor *m);
 static void setclientstate(Client *c, long state);
@@ -335,6 +336,7 @@ static xcb_connection_t *xcon;
 
 /* configuration, allows nested code to access above variables */
 #include "config.h"
+#include "commands.c"
 
 struct Pertag {
 	unsigned int curtag, prevtag; /* current and previous tag */
@@ -2253,6 +2255,44 @@ scan(void)
 		}
 		if (wins)
 			XFree(wins);
+	}
+}
+
+void
+sendcmd(const Arg *arg)
+{
+	char *p, name[128];
+	FILE *f;
+	int i;
+
+	char dmenucmd[1024] = "echo '";
+	for (i = 0; i < LENGTH(commands); ++i) {
+		char buff[128];
+		sprintf(buff, "%s\n", commands[i].cmdstr);
+		strcat(dmenucmd, buff);
+	}
+	strcat(dmenucmd, "' | dmenu -p \"dwm send:\"");
+
+	errno = 0; // popen(3p) says on failure it may set errno
+	if (!(f = popen(dmenucmd, "r"))) {
+		fprintf(stderr, "dwm: popen 'dmenu < /dev/null' failed%s%s\n", errno ? ": " : "", errno ? strerror(errno) : "");
+		return;
+	}
+	if (!(p = fgets(name, sizeof(name), f)) && (i = errno) && ferror(f))
+		fprintf(stderr, "dwm: fgets failed: %s\n", strerror(i));
+	if (pclose(f) < 0)
+		fprintf(stderr, "dwm: pclose failed %s\n", strerror(errno));
+	if (!p)
+		return;
+	if ((p = strchr(name, '\n')))
+		*p = '\0';
+	if (p == name)
+		return;
+
+	for (i = 0; i < LENGTH(commands); ++i) {
+		if (strcmp(commands[i].cmdstr, name) == 0) {
+			commands[i].func(&(commands[i].arg));
+		}
 	}
 }
 
