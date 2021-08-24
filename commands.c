@@ -26,18 +26,10 @@ const char* const DEFAULT_NAMESPACE_NAME_FORMAT[] = {
 
 void
 set_default_namespace_names(const Arg *arg) {
-	char shellcmd[1024];
-
-	system("echo called >> ~/out.txt");
-
 	char tagnamef[64];
 
 	for (int i = 0; i < LENGTH(tags) && i < LENGTH(DEFAULT_NAMESPACE_NAME_FORMAT); ++i) {
 		snprintf(tagnamef, sizeof(tagnamef), DEFAULT_NAMESPACE_NAME_FORMAT[i], i + 1);
-
-		snprintf(shellcmd, sizeof(shellcmd), "echo %s >> ~/out.txt", tagnamef);
-		system(shellcmd);
-
 		strcpy(tags[i], tagnamef);
 	}
 }
