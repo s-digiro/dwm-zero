@@ -108,14 +108,6 @@ ResourcePref resources[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *websitecmd[] = { "website-quick_open", NULL };
-static const char *termcmd[]  = { "st", NULL };
-static const char *termfloatcmd[] = { "st", "-c", "StFloat", NULL };
-//static const char *browsercmd[] = {"tabbed", "surf", "-e", NULL };
-static const char *firefoxcmd[] = {"firefox", NULL};
-//static const char *surfcmd[] = {"tabbed", "surf", "-e", NULL};
-static const char *vimbcmd[] = {"tabbed", "vimb", "-e", NULL};
-static const char *foobar2000cmd[] = {"foobar2000", "start", NULL };
-static const char *torbrowsercmd[] = {"torbrowser-launcher", NULL };
 static const char *layoutmenu_cmd = "layoutmenu.sh";
 
 #include "movestack.c"
@@ -124,12 +116,6 @@ static const char *layoutmenu_cmd = "layoutmenu.sh";
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd} },
-	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = websitecmd} },
-	{ MODKEY,                       XK_s,      spawn,          {.v = termcmd} },
-	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = termfloatcmd} },
-	{ MODKEY,                       XK_f,      spawn,          {.v = firefoxcmd} },
-	{ MODKEY,                       XK_a,      spawn,          {.v = foobar2000cmd} },
-	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = torbrowsercmd} },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -203,7 +189,6 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,                  Button1,        setlayout,           {0} },
 	{ ClkLtSymbol,          0,                  Button3,        layoutmenu,          {0} },
 	{ ClkWinTitle,          0,                  Button2,        zoom,                {0} },
-	{ ClkStatusText,        0,                  Button2,        spawn,               {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,             Button1,        movemouse,           {0} },
 	{ ClkClientWin,         MODKEY,             Button2,        togglefloating,      {0} },
 	{ ClkClientWin,         MODKEY|ShiftMask,   Button1,        resizemouse,         {0} },
