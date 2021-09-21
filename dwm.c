@@ -1903,7 +1903,7 @@ nametag(const Arg *arg)
 	int i;
 
 	errno = 0; // popen(3p) says on failure it may set errno
-	if (!(f = popen("echo '🌒\n♩\n▣\n✎\n↑\n>\nλ\n✉\n◎\n♣' | dmenu -p \"New tag name:\"", "r"))) {
+	if (!(f = popen("echo '\n\n\n\n\n\nλ\n\n\n\nﴔ' | dmenu -p \"New tag name:\"", "r"))) {
 		fprintf(stderr, "dwm: popen 'dmenu < /dev/null' failed%s%s\n", errno ? ": " : "", errno ? strerror(errno) : "");
 		return;
 	}
