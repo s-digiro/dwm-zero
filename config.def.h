@@ -107,8 +107,6 @@ static const char *browsercmd[] = {"tabbed", "surf", "-e", NULL };
 static const char *foobar2000cmd[] = {"foobar2000", "start", NULL };
 static const char *layoutmenu_cmd = "layoutmenu.sh";
 
-#include "selfrestart.c"
-
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -174,7 +172,6 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	TAGKEYS(                        XK_0,                      9)
-	{ MODKEY|ShiftMask,             XK_r,      self_restart,   {0} },
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
 };
 

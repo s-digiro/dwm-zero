@@ -114,7 +114,6 @@ static const char *websitecmd[] = { "website-quick_open", NULL };
 static const char *layoutmenu_cmd = "layoutmenu.sh";
 
 #include "movestack.c"
-#include "selfrestart.c"
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -181,7 +180,6 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	TAGKEYS(			XK_0,                      9)
-	{ MODKEY|ShiftMask,             XK_r,      self_restart,   {0} },
 	{ MODKEY|ShiftMask,             XK_Escape, quit,           {0} },
 };
 
