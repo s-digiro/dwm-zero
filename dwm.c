@@ -1327,7 +1327,7 @@ focusmon(const Arg *arg)
 static void
 focusmaster(const Arg *arg)
 {
-	if (!selmon->sel->isfullscreen) {
+	if (selmon->sel && !selmon->sel->isfullscreen) {
 		focus(nexttiled(selmon->clients));
 	}
 }
@@ -1335,7 +1335,7 @@ focusmaster(const Arg *arg)
 void
 focusstack(const Arg *arg)
 {
-	if (!selmon->sel->isfullscreen) {
+	if (selmon->sel && !selmon->sel->isfullscreen) {
 		Client *c = NULL, *i;
 
 		if (!selmon->sel)
