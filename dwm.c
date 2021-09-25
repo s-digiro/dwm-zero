@@ -2626,8 +2626,26 @@ togglefloating(const Arg *arg)
 void
 togglefullscr(const Arg *arg)
 {
-	if (selmon->sel)
+	Client *c;
+	int already_had_a_fullscreen = 0;
+
+	if (selmon->sel) {
+		// This is a weird little thing that fixes confusion when
+		// fullscreening a client when there is already a fullscreen.
+		// Doing this makes things confusing, so this will prevent that
+		// from happening and instead focus to current fullsscreen
+		for (c = selmon->clients; c; c = c->next) {
+			if (c->isfullscreen) {
+				already_had_a_fullscreen = 1;
+				setfullscreen(c, 0);
+			}
+			if (already_had_a_fullscreen) {
+				return;
+			}
+		}
+
 		setfullscreen(selmon->sel, !selmon->sel->isfullscreen);
+	}
 }
 
 void
