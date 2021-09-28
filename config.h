@@ -19,6 +19,7 @@ static const Bool toptab            = False;    /* False means bottom tab bar */
 static char *fonts[]          = {
 	"Terminus:size=12",
 	"TerminessTTF Nerd Font:size=10",
+	"Source Han Sans JP:antialias=true;autohint=true",
 };
 static char dmenufont[]       = "terminus:size=12";
 static char normbgcolor[]           = "#000000";
