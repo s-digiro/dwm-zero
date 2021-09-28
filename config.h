@@ -147,6 +147,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY,                       XK_space,  togglefullscr,  {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+	{ MODKEY,                       XK_Tab,    shiftviewclients,        {.i = +1} },
+	{ MODKEY|ShiftMask,             XK_Tab,    shiftviewclients,        {.i = -1} },
 	{ MODKEY|Mod1Mask,              XK_Down,   moveresize,     {.v = "0x 25y 0w 0h" } },
 	{ MODKEY|Mod1Mask,              XK_Up,     moveresize,     {.v = "0x -25y 0w 0h" } },
 	{ MODKEY|Mod1Mask,              XK_Right,  moveresize,     {.v = "25x 0y 0w 0h" } },
