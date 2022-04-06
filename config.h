@@ -18,9 +18,9 @@ static const Bool toptab            = False;    /* False means bottom tab bar */
 
 static char *fonts[]          = {
 	"Terminus:size=12",
-	"TerminessTTF Nerd Font:size=10",
-	"Source Han Sans JP:antialias=true:autohint=true",
-	"Noto Sans:antialias=true:autohint=true",
+	"TerminessTTF Nerd Font:size=12",
+	"Source Han Sans JP:antialias=true:autohint=true:size=12",
+	"Noto Sans:antialias=true:autohint=true:size=12",
 };
 static char dmenufont[]       = "terminus:size=12";
 static char normbgcolor[]           = "#000000";
@@ -29,7 +29,7 @@ static char normfgcolor[]           = "#ffffff";
 static char selfgcolor[]            = "#ffffff";
 static char selbordercolor[]        = "#ffffff";
 static char selbgcolor[]            = "#000000";
-static char titlefgcolor[]          = "#202020";
+static char titlefgcolor[]          = "#00ffff";
 static char titlebgcolor[]          = "#000000";
 static char titlebordercolor[]          = "#202020";
 static const char *colors[][3]      = {
